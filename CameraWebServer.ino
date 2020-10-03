@@ -9,7 +9,8 @@
 
 #include "camera_pins.h"
 
-const char* serverName = "http://192.168.1.10:721/api/test/upload";
+//const char* serverName = "http://125.166.183.210:721/api/test/upload";
+const char* serverName = "http://io.prinus.net/klok/";
 
 unsigned long lastTime = 0;
 unsigned long timerDelay = 5000;    // 5 seconds
@@ -20,7 +21,8 @@ NTPClient timeClient(ntpUDP);
 
 // Variables to save date and time
 String formattedDate;
-String serialNumber = "test-device";
+//String serialNumber = "test-device";/
+String serialNumber = "primabot/2009-99/0.1";
 
 //void startCameraServer();
 
@@ -28,6 +30,9 @@ void setup() {
   Serial.begin(115200);
   Serial.setDebugOutput(true);
   Serial.println();
+ 
+//  pinMode(4, OUTPUT);/
+//  digitalWrite(4, HIGH);/
 
   wifi_manager();
 
@@ -119,7 +124,7 @@ void setup() {
   // timeClient.setTimeOffset(3600);
 
   // take img
-  uploadImg();
+//  uploadImg();/
 
   // scan img for OCR
   // readOCR();
@@ -139,11 +144,12 @@ void loop() {
     if (reminder == 0) {
         Serial.println(minute);
         Serial.println("Taking new photo!");
+        uploadImg();
     } else {
         Serial.println("Not minutes 10");
     }
 
-    // delay for 5 seconds
+    // delay for 1 minute
     delay(60000);
 }
 

@@ -486,7 +486,7 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     int res = 0;
 
     if(!strcmp(variable, "framesize")) {
-        if(s->pixformat == PIXFORMAT_JPEG) res = s->set_framesize(s, (framesize_t)val);
+        if(s->pixformat == PIXFORMAT_JPEG || s->pixformat == PIXFORMAT_GRAYSCALE) res = s->set_framesize(s, (framesize_t)val);
     }
     else if(!strcmp(variable, "quality")) res = s->set_quality(s, val);
     else if(!strcmp(variable, "contrast")) res = s->set_contrast(s, val);
@@ -508,7 +508,7 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     else if(!strcmp(variable, "wpc")) res = s->set_wpc(s, val);
     else if(!strcmp(variable, "raw_gma")) res = s->set_raw_gma(s, val);
     else if(!strcmp(variable, "lenc")) res = s->set_lenc(s, val);
-    else if(!strcmp(variable, "special_effect")) res = s->set_special_effect(s, val);
+    else if(!strcmp(variable, "special_effect")) res = s->set_special_effect(s, val); // val
     else if(!strcmp(variable, "wb_mode")) res = s->set_wb_mode(s, val);
     else if(!strcmp(variable, "ae_level")) res = s->set_ae_level(s, val);
     else if(!strcmp(variable, "face_detect")) {
